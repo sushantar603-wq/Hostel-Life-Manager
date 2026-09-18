@@ -1,0 +1,62 @@
+# UML Sequence Diagram
+
+## Add Expense Sequence
+
+This sequence diagram shows the interaction that occurs when a user adds a new expense.
+
+```mermaid
+sequenceDiagram
+
+    actor User
+    participant Main
+    participant ValidationUtils
+    participant ExpenseManager
+    participant FileManager
+    participant ExpensesFile as expenses.txt
+
+    User->>Main: Select Expense Tracker
+    Main->>User: Display Expense Menu
+
+    User->>Main: Select Add Expense
+
+    Main->>ValidationUtils: Read amount
+    ValidationUtils->>User: Request amount
+    User-->>ValidationUtils: Enter amount
+    ValidationUtils-->>Main: Valid amount
+
+    Main->>ValidationUtils: Read category
+    ValidationUtils->>User: Request category
+    User-->>ValidationUtils: Enter category
+    ValidationUtils-->>Main: Valid category
+
+    Main->>ValidationUtils: Read description
+    ValidationUtils->>User: Request description
+    User-->>ValidationUtils: Enter description
+    ValidationUtils-->>Main: Valid description
+
+    Main->>ExpenseManager: addExpense(amount, category, description)
+
+    ExpenseManager->>ExpenseManager: Generate new ID
+    ExpenseManager->>ExpenseManager: Create Expense object
+    ExpenseManager->>ExpenseManager: Add expense to ArrayList
+
+    ExpenseManager->>FileManager: writeFile()
+    FileManager->>ExpensesFile: Write expense record
+    ExpensesFile-->>FileManager: Data saved
+    FileManager-->>ExpenseManager: Save completed
+
+    ExpenseManager-->>Main: Expense added successfully
+    Main-->>User: Display success message
+```
+
+## Sequence Description
+
+1. The user selects the Expense Tracker.
+2. The user chooses **Add Expense**.
+3. `ValidationUtils` validates the amount, category, and description.
+4. `Main` sends the valid information to `ExpenseManager`.
+5. `ExpenseManager` generates an ID and creates an `Expense` object.
+6. The expense is added to the in-memory `ArrayList`.
+7. `ExpenseManager` calls `FileManager`.
+8. `FileManager` saves the updated expense data to `expenses.txt`.
+9. A success message is displayed to the user.

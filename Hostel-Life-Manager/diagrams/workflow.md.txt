@@ -1,0 +1,57 @@
+# Process Flow / Workflow Diagram
+
+## Hostel Life Manager
+
+The following workflow shows how a user interacts with the Hostel Life Manager from application startup to completing different management operations.
+
+```mermaid
+flowchart TD
+
+    S([Start]) --> M[Display Main Menu]
+
+    M --> C{Select Module}
+
+    C --> E[Expense Tracker]
+    C --> ME[Mess Tracker]
+    C --> A[Assignment Tracker]
+    C --> T[Daily Task Manager]
+    C --> L[Laundry Reminder]
+    C --> W[Weekly Summary]
+    C --> X[Exit]
+
+    E --> E1[Add / View / Update / Delete Expense]
+    E1 --> ES[Save Expense Data]
+    ES --> M
+
+    ME --> ME1[Record / View / Analyze Meals]
+    ME1 --> MS[Save Meal Data]
+    MS --> M
+
+    A --> A1[Add / View / Complete / Delete Assignment]
+    A1 --> AS[Save Assignment Data]
+    AS --> M
+
+    T --> T1[Add / View / Complete / Delete Task]
+    T1 --> TS[Save Task Data]
+    TS --> M
+
+    L --> L1[Record Laundry / Check Status]
+    L1 --> LS[Save Laundry Data]
+    LS --> M
+
+    W --> WS[Generate Combined Summary]
+    WS --> M
+
+    X --> F([End])
+```
+
+## User Workflow
+
+1. The application starts.
+2. The main menu is displayed.
+3. The user selects a required module.
+4. The selected module performs the requested operation.
+5. Data is saved when the operation modifies information.
+6. The user returns to the main menu.
+7. The user can select another module or exit the application.
+8. Selecting Exit terminates the application.

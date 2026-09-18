@@ -1,0 +1,68 @@
+# System Architecture Diagram
+
+## Hostel Life Manager
+
+The Hostel Life Manager follows a simple modular architecture. The main user interface communicates with individual management modules, while the `FileManager` handles persistent storage.
+
+```mermaid
+flowchart TD
+
+    U[User]
+
+    M[Main.java<br/>Command Line Interface]
+
+    E[ExpenseManager]
+    MT[MealTracker]
+    A[AssignmentManager]
+    T[TaskManager]
+    L[LaundryManager]
+
+    F[FileManager]
+
+    ED[(expenses.txt)]
+    MD[(meals.txt)]
+    AD[(assignments.txt)]
+    TD[(tasks.txt)]
+    LD[(laundry.txt)]
+
+    U --> M
+
+    M --> E
+    M --> MT
+    M --> A
+    M --> T
+    M --> L
+
+    E --> F
+    MT --> F
+    A --> F
+    T --> F
+    L --> F
+
+    F --> ED
+    F --> MD
+    F --> AD
+    F --> TD
+    F --> LD
+```
+
+## Architecture Components
+
+| Component           | Responsibility                                              |
+| ------------------- | ----------------------------------------------------------- |
+| `Main.java`         | Provides the command-line interface and controls navigation |
+| `ExpenseManager`    | Handles expense operations and calculations                 |
+| `MealTracker`       | Handles meal records and statistics                         |
+| `AssignmentManager` | Handles assignments, deadlines, and completion status       |
+| `TaskManager`       | Handles daily tasks                                         |
+| `LaundryManager`    | Handles laundry records and reminders                       |
+| `FileManager`       | Reads and writes persistent data                            |
+| Text files          | Store application data locally                              |
+
+## Data Flow
+
+1. The user interacts with `Main.java`.
+2. `Main.java` sends the requested operation to the appropriate manager.
+3. The manager performs the required operation.
+4. `FileManager` reads or writes the corresponding data file when persistence is required.
+5. The result is displayed to the user through the command-line interface.

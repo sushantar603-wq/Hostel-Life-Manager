@@ -1,0 +1,84 @@
+# UML Use Case Diagram
+
+## Hostel Life Manager
+
+The use case diagram represents the interaction between the hostel student and the major functions provided by the system.
+
+```mermaid
+flowchart LR
+
+    U((Hostel Student))
+
+    E[Manage Expenses]
+    E1[Add Expense]
+    E2[View Expenses]
+    E3[Update Expense]
+    E4[Delete Expense]
+    E5[View Expense Summary]
+
+    M[Manage Meals]
+    M1[Record Meals]
+    M2[View Today's Meals]
+    M3[View Meal Statistics]
+
+    A[Manage Assignments]
+    A1[Add Assignment]
+    A2[View Assignments]
+    A3[Mark Assignment Completed]
+    A4[Delete Assignment]
+
+    T[Manage Daily Tasks]
+    T1[Add Task]
+    T2[View Tasks]
+    T3[Complete Task]
+    T4[Delete Task]
+
+    L[Manage Laundry]
+    L1[Record Laundry]
+    L2[Check Laundry Status]
+
+    W[View Weekly Summary]
+
+    U --> E
+    U --> M
+    U --> A
+    U --> T
+    U --> L
+    U --> W
+
+    E --> E1
+    E --> E2
+    E --> E3
+    E --> E4
+    E --> E5
+
+    M --> M1
+    M --> M2
+    M --> M3
+
+    A --> A1
+    A --> A2
+    A --> A3
+    A --> A4
+
+    T --> T1
+    T --> T2
+    T --> T3
+    T --> T4
+
+    L --> L1
+    L --> L2
+```
+
+## Primary Actor
+
+**Hostel Student:** The user who interacts with the system to manage expenses, meals, assignments, tasks, laundry, and weekly information.
+
+## Main Use Cases
+
+* Manage expenses.
+* Manage meals.
+* Manage assignments.
+* Manage daily tasks.
+* Manage laundry.
+* View weekly summary.

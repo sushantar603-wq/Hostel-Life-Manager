@@ -1,0 +1,173 @@
+# UML Class Diagram
+
+## Hostel Life Manager
+
+The class diagram represents the major classes in the application and their relationships.
+
+```mermaid
+classDiagram
+
+    class Main {
+        -Scanner scanner
+        -ExpenseManager expenseManager
+        -MealTracker mealTracker
+        -AssignmentManager assignmentManager
+        -TaskManager taskManager
+        -LaundryManager laundryManager
+        +main(String[] args)
+    }
+
+    class Expense {
+        -int id
+        -String category
+        -double amount
+        -String description
+        -String date
+        +getId()
+        +getCategory()
+        +getAmount()
+        +getDescription()
+        +getDate()
+        +setCategory()
+        +setAmount()
+        +setDescription()
+        +toFileString()
+    }
+
+    class ExpenseManager {
+        -ArrayList~Expense~ expenses
+        +addExpense()
+        +viewExpenses()
+        +updateExpense()
+        +deleteExpense()
+        +getTotalExpense()
+        +getHighestCategory()
+        +getSmallExpenses()
+        +getExpenseCount()
+    }
+
+    class Meal {
+        -String date
+        -String breakfast
+        -String lunch
+        -String dinner
+        +getDate()
+        +getBreakfast()
+        +getLunch()
+        +getDinner()
+        +getEatenCount()
+        +getSkippedCount()
+        +toFileString()
+    }
+
+    class MealTracker {
+        -ArrayList~Meal~ meals
+        +recordToday()
+        +showToday()
+        +getTotalEaten()
+        +getTotalSkipped()
+        +showStatistics()
+    }
+
+    class Assignment {
+        -int id
+        -String subject
+        -String title
+        -String deadline
+        -boolean completed
+        +getId()
+        +getSubject()
+        +getTitle()
+        +getDeadline()
+        +isCompleted()
+        +setCompleted()
+        +toFileString()
+    }
+
+    class AssignmentManager {
+        -ArrayList~Assignment~ assignments
+        +addAssignment()
+        +viewAssignments()
+        +markCompleted()
+        +deleteAssignment()
+        +getPendingCount()
+        +getNextDeadline()
+    }
+
+    class Task {
+        -int id
+        -String description
+        -boolean completed
+        +getId()
+        +getDescription()
+        +isCompleted()
+        +setCompleted()
+        +toFileString()
+    }
+
+    class TaskManager {
+        -ArrayList~Task~ tasks
+        +addTask()
+        +viewTasks()
+        +completeTask()
+        +deleteTask()
+        +getPendingCount()
+    }
+
+    class LaundryManager {
+        -LocalDate lastLaundryDate
+        -int LAUNDRY_INTERVAL
+        +recordLaundry()
+        +showStatus()
+        +getStatus()
+    }
+
+    class FileManager {
+        +readFile()
+        +writeFile()
+    }
+
+    class ValidationUtils {
+        +readPositiveDouble()
+        +readInt()
+        +readNonEmpty()
+        +readDate()
+        +readMealStatus()
+    }
+
+    Main --> ExpenseManager
+    Main --> MealTracker
+    Main --> AssignmentManager
+    Main --> TaskManager
+    Main --> LaundryManager
+    Main --> ValidationUtils
+
+    ExpenseManager --> Expense
+    MealTracker --> Meal
+    AssignmentManager --> Assignment
+    TaskManager --> Task
+
+    ExpenseManager --> FileManager
+    MealTracker --> FileManager
+    AssignmentManager --> FileManager
+    TaskManager --> FileManager
+    LaundryManager --> FileManager
+}
+```
+
+## Class Responsibilities
+
+| Class               | Responsibility                          |
+| ------------------- | --------------------------------------- |
+| `Main`              | Controls the application and user menus |
+| `Expense`           | Represents an expense record            |
+| `ExpenseManager`    | Manages expense operations              |
+| `Meal`              | Represents a meal record                |
+| `MealTracker`       | Manages meal records and statistics     |
+| `Assignment`        | Represents an assignment                |
+| `AssignmentManager` | Manages assignments and deadlines       |
+| `Task`              | Represents a daily task                 |
+| `TaskManager`       | Manages daily tasks                     |
+| `LaundryManager`    | Manages laundry reminders               |
+| `FileManager`       | Handles file input/output               |
+| `ValidationUtils`   | Validates user input                    |
